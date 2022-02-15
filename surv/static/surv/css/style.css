@@ -1,0 +1,42 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+}
+
+#left {
+  width: calc(100% / 3);
+  height: 100%;
+}
+
+#center {
+  width: calc(100% / 3);
+  height: 100%;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
+#post {
+  border-bottom: 1px solid gray;
+  height: 170px;
+}
+
+.plus {
+  text-align: right;
+}
+
+#timeline {
+  height: calc(100% - 100px);
+}
+
+#right {
+  width: calc(100% / 3);
+  height: 100%;
+}
+
+#text {
+  border-left: 1px solid gray;
+}

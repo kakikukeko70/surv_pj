@@ -1,0 +1,17 @@
+{% extends "surv/base.html" %}
+
+{% block content %}
+<div>
+  {% for toko in tokos %}
+  <div>
+    <div id="text">
+      {{ toko.text }}
+    </div>
+    {% for answer in toko.answer_set.all %}
+      {{ answer.answer }}
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <a href="{% url 'surv:index' %}">back to home</a>
+</div>
+{% endblock %}

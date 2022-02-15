@@ -1,0 +1,29 @@
+{% extends "surv/base.html" %}
+
+{% block content %}
+<div id="left">
+  <ul>
+    <li><a href="">login</a></li>
+    <li><a href="{% url 'surv:profile' %}">profile</a></li>
+    <li><a href="">setting</a></li>
+    <li><a href="{% url 'surv:your_toko' %}">your toko</a></li>
+  </ul>
+</div>
+<div id="center">
+  <div id="post">
+    <form action="{% url 'surv:index' %}" method="POST">{% csrf_token %}
+      {{ form_toko.as_p }}
+      {{ form_ans.as_p }}
+      <button type="submit" id="post_btn">post</button>
+    </form>
+  </div>
+  <div id="timeline">
+    {% for toko in tokos %}
+      <p>{{ toko }}</p>
+    {% endfor %}
+  </div>
+</div>
+<div id="right">
+  category
+</div>
+{% endblock %}
