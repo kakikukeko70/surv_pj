@@ -19,7 +19,7 @@
   </div>
   <div id="timeline">
     {% for toko in tokos %}
-      <p>{{ toko }}</p>
+    <div><a href="{% url 'surv:detail' toko.id %}">{{ toko }}</a></div>
     {% endfor %}
   </div>
 </div>

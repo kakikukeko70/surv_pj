@@ -1,0 +1,11 @@
+<h1>{{ toko }}</h1>
+
+<form action="{% url 'surv:send' toko.id %}"></form>
+{% for answer in toko.answer_set.all %}
+<input type="radio" name="answer" value="{{answer.id }}">
+<label>{{ answer }}</label>
+{% endfor %}
+<div><input type="submit" value="send"></div>
+</form>
+
+<div><a href="{% url 'surv:index' %}">back to home</a></div>

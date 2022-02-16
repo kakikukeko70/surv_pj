@@ -13,6 +13,7 @@ body {
 }
 
 #center {
+  padding: 5px;
   width: calc(100% / 3);
   height: 100%;
   border-left: 1px solid gray;
@@ -38,5 +39,7 @@ body {
 }
 
 #text {
-  border-left: 1px solid gray;
+  margin-right: 5px;
+  display: inline;
+  border-right: 1px solid gray;
 }

@@ -2,16 +2,16 @@
 
 {% block content %}
 <div>
-  {% for toko in tokos %}
-  <div>
-    <div id="text">
-      {{ toko.text }}
-    </div>
-    {% for answer in toko.answer_set.all %}
-      {{ answer.answer }}
-    {% endfor %}
+{% for atoko in toko %}
+<div>
+  <div id="text">
+    {{ atoko.text }}
   </div>
+  {% for answer in toko.answer_set.all %}
+    {{ answer.answer }}
   {% endfor %}
-  <a href="{% url 'surv:index' %}">back to home</a>
+</div>
+{% endfor %}
+<div><a href="{% url 'surv:index' %}">back to home</a></div>
 </div>
 {% endblock %}
