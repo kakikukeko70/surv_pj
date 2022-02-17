@@ -1,12 +1,11 @@
-from audioop import reverse
-from django.http import HttpResponseRedirect
-from multiprocessing import context
-from django.forms import formset_factory, modelformset_factory
-from urllib import request
+from atexit import register
+from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
 from .models import Answer, Toko
 from .forms import TokoForm, AnswerForm
+from django import template
+register = template.Library()
 
 class Home(View):
   model = Toko
@@ -39,10 +38,16 @@ class Detail(DetailView):
 
 def send(request, toko_id):
   toko = get_object_or_404(Toko, pk=toko_id)
-  selected_answer = toko.answer_set.get(pk=request.POST['answer'])
-  selected_answer.num += 1
-  selected_answer.save()
-  return HttpResponseRedirect(reverse('surv:index'))
+  toko.nsum += 1
+  toko.save()
+  try:
+    selected_answer = toko.answer_set.get(pk=request.POST['answer'])
+  except (KeyError, Answer.DoesNotExist):
+    return render(request, 'surv/index.html')  
+  else:
+    selected_answer.num += 1
+    selected_answer.save()
+    return redirect('surv:index')
 
 
 class Profile(ListView):
