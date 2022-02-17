@@ -1,4 +1,3 @@
-from unicodedata import category
 from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
@@ -20,9 +19,14 @@ class Home(View):
     if form_ans.is_valid():
       for form in form_ans:
         if form.is_valid():
-          f = form.save()
-          f.toko = toko
-          f.save()
+          a = form.save()
+          a.toko = toko
+          a.save()
+    category_form = CategoryForm(request.POST)
+    if category_form.is_valid():
+      c_text = category_form.cleaned_data['category_text']
+      c = Category.objects.get(category_text=c_text)
+      c.tokos.add(toko)
     return redirect('surv:index')
           
 
@@ -71,3 +75,7 @@ class New_category(View):
     if form.is_valid():
       form.save()
       return redirect('surv:index')
+
+class Category_toko_list(DetailView):
+  model = Category
+  template_name = 'surv/category_toko_list.html'

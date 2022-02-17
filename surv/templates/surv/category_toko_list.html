@@ -1,0 +1,7 @@
+{{ category.name }}
+
+{% for toko in category.tokos.all %}
+  <p><a href="{% url 'surv:detail' toko.id %}">{{ toko.text }}</a></p>
+{% endfor %}
+
+<div><a href="{% url 'surv:index' %}">back to home</a></div>

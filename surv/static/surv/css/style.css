@@ -25,6 +25,12 @@ body {
   height: 170px;
 }
 
+#drop {
+  background-color: gold;
+  margin-right: 0;
+  margin-left: auto;
+}
+
 .plus {
   text-align: right;
 }

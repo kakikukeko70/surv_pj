@@ -14,6 +14,13 @@
     <form action="{% url 'surv:index' %}" method="POST">{% csrf_token %}
       {{ form_toko.as_p }}
       {{ form_ans.as_p }}
+      <div class="drop">
+        <select name="category_text">
+          {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+          {% endfor %}
+        </select>
+      </div>
       <button type="submit" id="post_btn">post</button>
     </form>
   </div>
@@ -26,7 +33,7 @@
 <div id="right">
   <h3><a href="{% url 'surv:new_category' %}">create new gategory</a></h3>
   {% for category in categories %}
-    <p><a href="">{{ category }}</a></p>
+    <div><a href="{% url 'surv:category_toko_list' category.id %}">{{ category }}</a></div>
   {% endfor %}
 </div>
 {% endblock %}
