@@ -24,6 +24,9 @@
   </div>
 </div>
 <div id="right">
-  category
+  <h3><a href="{% url 'surv:new_category' %}">create new gategory</a></h3>
+  {% for category in categories %}
+    <p><a href="">{{ category }}</a></p>
+  {% endfor %}
 </div>
 {% endblock %}

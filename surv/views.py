@@ -1,9 +1,9 @@
-from atexit import register
+from unicodedata import category
 from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
-from .models import Answer, Toko
-from .forms import TokoForm, AnswerForm
+from .models import Answer, Toko, Category
+from .forms import TokoForm, AnswerForm, CategoryForm
 from django import template
 register = template.Library()
 
@@ -28,9 +28,10 @@ class Home(View):
 
   def get(self, request):
     tokos = Toko.objects.all()
+    categories = Category.objects.all()
     form_toko = TokoForm()
     form_ans = formset_factory(AnswerForm, extra=2)
-    return render(request, self.template_name, {'tokos': tokos, 'form_toko': form_toko, 'form_ans': form_ans})
+    return render(request, self.template_name, {'tokos': tokos, 'categories': categories, 'form_toko': form_toko, 'form_ans': form_ans})
 
 class Detail(DetailView):
   model = Toko
@@ -57,3 +58,16 @@ class Profile(ListView):
 class Your_toko(ListView):
   model = Toko
   template_name = 'surv/your_tokos.html'
+
+class New_category(View):
+  template_name = 'surv/new_category.html'
+  
+  def get(self, request):
+    form = CategoryForm()
+    return render(request, self.template_name, {'form': form})
+
+  def post(self, request):
+    form = CategoryForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('surv:index')
