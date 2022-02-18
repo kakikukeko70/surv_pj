@@ -26,7 +26,6 @@ body {
 }
 
 #drop {
-  background-color: gold;
   margin-right: 0;
   margin-left: auto;
 }
@@ -40,6 +39,7 @@ body {
 }
 
 #right {
+  padding: 5px;
   width: calc(100% / 3);
   height: 100%;
 }

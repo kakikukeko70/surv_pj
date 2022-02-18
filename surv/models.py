@@ -1,6 +1,3 @@
-from pickle import TRUE
-from pyexpat import model
-from tkinter import CASCADE
 from django.db import models
 
 class Toko(models.Model):

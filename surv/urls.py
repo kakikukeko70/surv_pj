@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Category_toko_list, Home, Profile, Detail, Your_toko, New_category, Category_toko_list
+from .views import Category_toko_list, Home, Profile, Detail, Your_toko, New_category, Category_toko_list, Result
 from . import views
 
 app_name = 'surv'
@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:toko_id>/send/', views.send, name='send'),
     path('new_category', New_category.as_view(), name='new_category'),
     path('<int:pk>/category_toko_list', Category_toko_list.as_view(), name='category_toko_list'),
+    path('<int:pk>/result', Result.as_view(), name='result'),
 ]

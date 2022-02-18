@@ -1,0 +1,8 @@
+{% load mathfilters %}
+{{ toko }}
+
+{% for answer in toko.answer_set.all %} 
+  <p>{{ answer.num | mul:100 | intdiv:toko.nsum  }}% {{ answer.answer }}</p>
+{% endfor %}
+
+<div><a href="{% url 'surv:index' %}">back to home</a></div>
