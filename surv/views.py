@@ -1,6 +1,7 @@
+from pipes import Template
 from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, ListView, DetailView
+from django.views.generic import View, TemplateView, ListView, DetailView
 from .models import Answer, Toko, Category
 from .forms import TokoForm, AnswerForm, CategoryForm
 from django import template
@@ -50,8 +51,13 @@ class New_category(View):
       form.save()
       return redirect('surv:index')
 
-class Profile(ListView):
-  model = Toko
+class Setting(TemplateView):
+  template_name = 'surv/setting.html'
+
+class Account(TemplateView):
+  template_name = 'registration/index.html'
+
+class Profile(TemplateView):
   template_name = 'surv/profile.html'
 
 class Your_toko(ListView):
@@ -81,4 +87,4 @@ def send(request, toko_id):
   else:
     selected_answer.num += 1
     selected_answer.save()
-    return redirect('surv:index')       
+    return redirect('surv:index')
