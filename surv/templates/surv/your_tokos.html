@@ -1,4 +1,5 @@
 {% load mathfilters %}
+
 {% for a in toko_list %}
   <div style="border-bottom: 1px solid gray;">
     <p>{{ a.text }}</p>
@@ -11,6 +12,7 @@
       {% endif %}
     </ul>
     {% endfor %}
+    <p>{{ a.nsum }}votes</p>
     <p>category({{ a.category_set.get }})</p>
   </div>
 {% endfor %}

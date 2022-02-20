@@ -131,3 +131,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/home"
 LOGOUT_REDIRECT_URL = "/login/"
+
+AUTH_USER_MODEL = 'registration.User'
+
+FRONTEND_URL = "http://127.0.0.1:8000"

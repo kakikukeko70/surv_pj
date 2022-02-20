@@ -1,7 +1,5 @@
 from unicodedata import name
 from django.urls import path, include
-
-import registration
 from .views import Category_toko_list, Home, Profile, Detail, Your_toko, New_category, Category_toko_list, Result, Setting
 from . import views
 

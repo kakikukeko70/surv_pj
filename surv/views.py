@@ -1,5 +1,6 @@
-from pipes import Template
+from django.urls import reverse
 from django.forms import formset_factory
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, TemplateView, ListView, DetailView
 from .models import Answer, Toko, Category
@@ -83,8 +84,8 @@ def send(request, toko_id):
   try:
     selected_answer = toko.answer_set.get(pk=request.POST['answer'])
   except (KeyError, Answer.DoesNotExist):
-    return render(request, 'surv/index.html')  
+    return render(request, 'surv:index')  
   else:
     selected_answer.num += 1
     selected_answer.save()
-    return redirect('surv:index')
+    return HttpResponseRedirect(reverse('surv:result', args=(toko.id,)))
